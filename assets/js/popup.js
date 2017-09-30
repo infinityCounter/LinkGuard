@@ -1,11 +1,11 @@
-$(function(){
-
-  const toggleState = () => {
-    console.log('hola');
-  };
-
-  $("#en-dis-btn").click(function(event) {
-    toggleState();
+$(function() {
+  const btn = '#en-dis-btn';
+  $(btn).click(function(e){
+    e.preventDefault();
+    chrome.runtime.sendMessage({'msg' : 'bg-toggle'}, function(response) {
+       console.log(response);
+    });
   });
-
 });
+
+console.log(chrome.extension.getBackgroundPage().test);
