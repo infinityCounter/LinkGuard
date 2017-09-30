@@ -1,5 +1,6 @@
 {
   "name" : "LinkGuard",
+  "version" : "0.0.1",
   "manifest_version" : 2,
   "browser_action" : {
     "default_title" : "Reveal Aliased Links",
@@ -11,15 +12,16 @@
    "default_popup" : "popup.html"
   },
   "background" : {
-    "scripts" : [
-      "assets/js/jquery-3.2.1.slim.min.js", 
-      "assets/js/background.js"
-    ],
+    "scripts" : ["assets/js/background.js"],
     "persistent" : false
   },
-  "content_scripts" : {
-    "js": ["assets/js/content.js"]
-  },
+  "content_scripts" : [{
+    "matches" : ["*://*/*"], 
+    "js" : [
+      "assets/js/jquery-3.2.1.slim.min.js",
+      "assets/js/content.js"
+     ]
+  }],
   "permissions" : [
     "activeTab",
     "storage"
