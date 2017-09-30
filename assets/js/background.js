@@ -63,9 +63,9 @@ function toggleEnableStore()
   });    
 }
 
-function sleep(ms) {
+/*function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+}*/
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -73,15 +73,8 @@ chrome.runtime.onMessage.addListener(
     if(request.msg.toLowerCase()  === "bg-toggle") 
       toggleEnableStore().then(function(result) {
         console.log(result);
-        //*
-        sleep()
-        /*/
-        sleep(10000)
-        //*/
-        .then(function(){
-          sendResponse(result);
-          console.log('Result sent!');
-        });
+        sendResponse(result);
+        console.log('Result sent!');
       });
     // Indicates that the handler will response asynchronously
     return true;
