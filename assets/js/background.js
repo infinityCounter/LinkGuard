@@ -40,18 +40,23 @@ const setStorage = (key, newState) =>
   return storage.set({[key] : newState});
 };
 
-const getFromStorage = (key) => 
+const getFromStorage = (key) =>  
 {
   return storage.get(key);
 };
 
-function toggleEnableStore() 
+function getState()
+{
+  return getFromStorage(key);
+}
+
+const toggleEnableStore = () => 
 {
   return new Promise((resolve, reject) =>
   {
     getFromStorage(key).then(function(currentState) {
       if(typeof currentState == 'undefined' || currentState == null)
-        currentState = 1;
+        currentState = 0;
       return new Promise(function(resolve, reject) {
         console.log('resolving....');
         resolve(currentState);
