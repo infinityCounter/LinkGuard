@@ -47,25 +47,43 @@ const getFromStorage = (key) =>
 
 function toggleEnableStore() 
 {
-  getFromStorage(key).then(function(currentState) {
-    console.log(currentState);
-    if(typeof currentState == 'undefined' || currentState == null)
-      currentState = 1;
-    console.log(currentState);
-    return new Promise(function(resolve, reject) {
-      console.log('resolving....');
-      resolve(currentState);
-     });  
-   })
-   .then((currentState) => setStorage(key, (currentState.enabled === 1)? 0 : 1))
-   .then(() => getFromStorage(key))
-   .then(console.log);    
+  return new Promise((resolve, reject) =>
+  {
+    getFromStorage(key).then(function(currentState) {
+      if(typeof currentState == 'undefined' || currentState == null)
+        currentState = 1;
+      return new Promise(function(resolve, reject) {
+        console.log('resolving....');
+        resolve(currentState);
+       });  
+     })
+     .then((currentState) => setStorage(key, (currentState.enabled === 1)? 0 : 1))
+     .then(() => getFromStorage(key))
+     .then(resolve);
+  });    
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse)
-  {
+  function(request, sender, sendResponse) {
     console.log(request);  
-    if(request.msg.toLowerCase()  === "bg-toggle") toggleEnableStore();
+    if(request.msg.toLowerCase()  === "bg-toggle") 
+      toggleEnableStore().then(function(result) {
+        console.log(result);
+        //*
+        sleep()
+        /*/
+        sleep(10000)
+        //*/
+        .then(function(){
+          sendResponse(result);
+          console.log('Result sent!');
+        });
+      });
+    // Indicates that the handler will response asynchronously
+    return true;
   }
 );
