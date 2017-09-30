@@ -7,5 +7,3 @@ $(function() {
     });
   });
 });
-
-console.log(chrome.extension.getBackgroundPage().test);
