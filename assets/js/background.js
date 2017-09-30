@@ -12,3 +12,7 @@ chrome.state.onChange.addListener(function(change, namespace) {
 const setState = function(newState) {
     chrome.storage.sync.set({key});
 };
+
+const toggleState = () => {
+    console.log('hola');
+};
