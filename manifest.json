@@ -12,7 +12,8 @@
    "default_popup" : "popup.html"
   },
   "background" : {
-    "scripts" : ["assets/js/background.js"]
+    "scripts" : ["assets/js/background.js"],
+    "persistent" : false
   },
   "content_scripts" : [{
     "matches" : ["*://*/*"], 
