@@ -1,0 +1,32 @@
+html {
+  width: 160px;
+  height: 250px;
+}
+
+body {
+  margin: 5px;
+  position: relative;
+  width: 150px;
+  height: 250px;
+}
+
+div {
+  width : 80%;
+  margin : 0 auto;
+  text-align: center;
+}
+
+img {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 10px;
+  word-wrap: break-word;
+}
