@@ -1,4 +1,6 @@
 $(function() {
+  // Force event page to come into memory
+  chrome.extension.getBackgroundPage();
   const btn = '#en-dis-btn';
   const str_dis = 'Disable';
   const str_en = 'Enable';
